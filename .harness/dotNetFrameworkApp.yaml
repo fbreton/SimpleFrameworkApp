@@ -35,7 +35,7 @@ pipeline:
                   identifier: msbuild
                   spec:
                     connectorRef: FredDockerRegistry
-                    image: mcr.microsoft.com/dotnet/framework/sdk:4.8.1
+                    image: mcr.microsoft.com/dotnet/framework/sdk:4.8
                     shell: Powershell
                     command: |
                       msbuild SimpleFrameworkApp.sln /p:Configuration=Release
