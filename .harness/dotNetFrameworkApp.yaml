@@ -1,0 +1,41 @@
+pipeline:
+  name: dotNetFrameworkApp
+  identifier: dotNetFrameworkApp
+  projectIdentifier: FredSandBox
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: fredrepo
+        repoName: SimpleFrameworkApp
+        build: <+input>
+  stages:
+    - stage:
+        name: Build
+        identifier: Build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: gkefred
+              namespace: test
+              automountServiceAccountToken: true
+              nodeSelector:
+                kubernetes.io/os: windows
+              os: Windows
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: msbuild
+                  identifier: msbuild
+                  spec:
+                    connectorRef: FredDockerRegistry
+                    image: mcr.microsoft.com/dotnet/framework/sdk:4.8.1
+                    shell: Powershell
+                    command: |
+                      msbuild SimpleFrameworkApp.sln /p:Configuration=Release
