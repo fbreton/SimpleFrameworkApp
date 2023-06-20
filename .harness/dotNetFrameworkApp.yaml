@@ -39,3 +39,7 @@ pipeline:
                     shell: Powershell
                     command: |
                       msbuild SimpleFrameworkApp.sln /p:Configuration=Release
+                    resources:
+                      limits:
+                        memory: 2G
+                        cpu: "1"
