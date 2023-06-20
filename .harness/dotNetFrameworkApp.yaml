@@ -38,9 +38,11 @@ pipeline:
                     connectorRef: FredDockerRegistry
                     image: mcr.microsoft.com/dotnet/framework/sdk:4.8
                     shell: Powershell
-                    command: |
+                    command: |-
                       nuget restore SimpleFrameworkApp.sln
                       msbuild SimpleFrameworkApp.sln /p:Configuration=Release
+                      msbuild SimpleFrameworkApp.sln /p:Configuration=Release /p:DeployOnBuild=true /t:WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=published /p:PackageAsSingleFile=false
+                      dir published
                     resources:
                       limits:
                         memory: 2G
