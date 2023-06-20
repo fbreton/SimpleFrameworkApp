@@ -39,6 +39,7 @@ pipeline:
                     image: mcr.microsoft.com/dotnet/framework/sdk:4.8
                     shell: Powershell
                     command: |
+                      nuget restore SimpleFrameworkApp.sln
                       msbuild SimpleFrameworkApp.sln /p:Configuration=Release
                     resources:
                       limits:
