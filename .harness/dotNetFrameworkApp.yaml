@@ -45,3 +45,4 @@ pipeline:
                       limits:
                         memory: 2G
                         cpu: "1"
+                  timeout: 20m
