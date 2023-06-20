@@ -22,7 +22,7 @@ pipeline:
             type: KubernetesDirect
             spec:
               connectorRef: gkefred
-              namespace: test
+              namespace: payment-service-build
               automountServiceAccountToken: true
               nodeSelector:
                 kubernetes.io/os: windows
