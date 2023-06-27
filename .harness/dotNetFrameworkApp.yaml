@@ -23,7 +23,7 @@ pipeline:
             spec:
               connectorRef: gkefred
               namespace: payment-service-build
-              initTimeout: 1h
+              initTimeout: 30m
               automountServiceAccountToken: true
               nodeSelector:
                 kubernetes.io/os: windows
